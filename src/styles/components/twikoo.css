@@ -4,42 +4,42 @@
  * Pattern mirrors waline.css.
  */
 
-/* === Light mode: override Twikoo's default blue (#409eff) with blog theme color === */
+/* === Light mode: override Twikoo's default blue (#409eff) with Azure Dove theme color === */
 .tk-comments-container .tk-submit .tk-row .tk-btn,
 .tk-comments-container a {
-  color: #e9546b;
+  color: #397fa9;
 }
 
 .tk-comments-container .tk-submit .tk-row .tk-btn:hover,
 .tk-comments-container a:hover {
-  color: #ed788c;
+  color: #2d6d96;
 }
 
 .tk-comments-container .tk-submit .tk-row .tk-btn.tk-send-btn {
-  background-color: #e9546b;
-  border-color: #e9546b;
+  background-color: #397fa9;
+  border-color: #397fa9;
   color: #fff;
 }
 
 .tk-comments-container .tk-submit .tk-row .tk-btn.tk-send-btn:hover {
-  background-color: #ed788c;
-  border-color: #ed788c;
+  background-color: #2d6d96;
+  border-color: #2d6d96;
 }
 
 /* === Dark mode === */
 html.dark .tk-comments-container {
-  color: #c8c8c8;
+  color: #c2d0dc;
 }
 
 html.dark .tk-comments-container .tk-meta-input .el-input .el-input__inner,
 html.dark .tk-comments-container .tk-content,
 html.dark .tk-comments-container .tk-main .tk-nick {
-  color: #c8c8c8;
+  color: #c2d0dc;
 }
 
 html.dark .tk-comments-container .tk-meta-input .el-input .el-input__inner {
   background-color: transparent;
-  border-color: #444;
+  border-color: #304355;
 }
 
 html.dark .tk-comments-container .tk-icon {
@@ -47,27 +47,27 @@ html.dark .tk-comments-container .tk-icon {
 }
 
 html.dark .tk-comments-container a {
-  color: #ed788c;
+  color: #6faad2;
 }
 
 html.dark .tk-comments-container a:hover {
-  color: #f09aab;
+  color: #a5c8e1;
 }
 
 html.dark .tk-comments-container .tk-submit .tk-row .tk-btn.tk-send-btn {
-  background-color: #ed788c;
-  border-color: #ed788c;
+  background-color: #6faad2;
+  border-color: #6faad2;
 }
 
 html.dark .tk-comments-container .tk-submit .tk-row .tk-btn.tk-send-btn:hover {
-  background-color: #f09aab;
-  border-color: #f09aab;
+  background-color: #a5c8e1;
+  border-color: #a5c8e1;
 }
 
 html.dark .tk-comments-container .tk-admin-warn {
-  background-color: #2a2a2a;
-  border-color: #444;
-  color: #c8c8c8;
+  background-color: #223548;
+  border-color: #304355;
+  color: #c2d0dc;
 }
 
 html.dark .tk-comments-container .tk-extras {

@@ -124,14 +124,14 @@ const momentsRouters = resolveMomentsNavigation(
 // Navigation routers with resolved feature placeholders and auto-injected bangumi entry
 export const routers: RouterItem[] = bangumiConfig
   ? [
-    ...momentsRouters,
-    {
-      name: bangumiConfig.label,
-      nameKey: bangumiConfig.label ? undefined : 'nav.bangumi',
-      path: '/bangumi',
-      icon: bangumiConfig.icon ?? 'ri:bilibili-fill',
-    },
-  ]
+      ...momentsRouters,
+      {
+        name: bangumiConfig.label,
+        nameKey: bangumiConfig.label ? undefined : 'nav.bangumi',
+        path: '/bangumi',
+        icon: bangumiConfig.icon ?? 'ri:bilibili-fill',
+      },
+    ]
   : momentsRouters;
 
 // Map YAML dev tools config with defaults (dev only)

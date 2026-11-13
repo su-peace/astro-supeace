@@ -1,11 +1,11 @@
 /**
- * A small burst of sakura petals where an interactive element is pressed (lively motion level only).
+ * A small burst of Azure Crystal snowflakes where an interactive element is pressed (lively motion level only).
  *
- * Each petal's flight is simulated up front (a toss, air drag, then a slow fall with sway, spin and a
+ * Each snowflake's flight is simulated up front (a toss, air drag, then a slow fall with sway, spin and a
  * flip about its long axis) and baked into transform/opacity keyframes, so the compositor plays it
  * even while a navigation keeps the main thread busy.
  *
- * The layer lives on <html> so it survives ClientRouter swaps. While petals are airborne it carries its
+ * The layer lives on <html> so it survives ClientRouter swaps. While snowflakes are airborne it carries its
  * own view-transition-name, so a page transition shows it as a live group above both pages instead of
  * freezing it into the old snapshot; its animations hold still while the page itself is frozen, then
  * resume exactly where they stopped.
@@ -36,7 +36,7 @@ function ensureLayer(): HTMLDivElement {
   return layer;
 }
 
-/** One petal tossed from (x, y), sampled into keyframes. Positions are the petal's center in px. */
+/** One snowflake tossed from (x, y), sampled into keyframes. Positions are the snowflake's center in px. */
 function simulateFlight(x: number, y: number, depth: number): { keyframes: Keyframe[]; duration: number } {
   const angle = -Math.PI / 2 + random(-1.25, 1.25);
   const speed = random(170, 340) * (0.75 + depth * 0.25);
@@ -86,15 +86,15 @@ function burstAt(x: number, y: number): void {
   host.style.viewTransitionName = LAYER_NAME;
   for (let i = 0; i < PETALS_PER_BURST; i++) {
     const depth = random(0.35, 1);
-    const size = 7 + depth * 6;
+    const size = 9 + depth * 6;
     const [tip, base] = PETAL_COLORS[i % PETAL_COLORS.length];
     const petal = document.createElement('span');
     petal.className = 'petal-burst';
     petal.style.width = `${size}px`;
     petal.style.height = `${size * 1.2}px`;
     petal.style.margin = `${-size * 0.6}px 0 0 ${-size / 2}px`;
-    // The base color reaches further up than on the cover so the petals still read on white cards.
-    petal.style.background = `linear-gradient(${tip}, ${base} 70%)`;
+    // The base color reaches further up than on the cover so the snowflakes still read on white cards.
+    petal.style.background = `linear-gradient(${tip}, ${base} 65%)`;
     host.append(petal);
 
     const { keyframes, duration } = simulateFlight(x, y, depth);
@@ -110,7 +110,7 @@ function burstAt(x: number, y: number): void {
   }
 }
 
-/** Freeze airborne petals while a view transition has the page frozen, and resume them once it plays. */
+/** Freeze airborne snowflakes while a view transition has the page frozen, and resume them once it plays. */
 export function holdPetalBurst(transition: ViewTransition): void {
   if (flights.size === 0) return;
   for (const flight of flights) flight.pause();

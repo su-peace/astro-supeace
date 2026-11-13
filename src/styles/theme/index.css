@@ -1,82 +1,82 @@
 :root {
-  --gradient-bg-start: #fdfbfb;
-  --gradient-bg-end: #ebedee;
+  --gradient-bg-start: #f4f8fc;
+  --gradient-bg-end: #eaf1f7;
   --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
-  --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
-  --gradient-header: linear-gradient(-225deg, #e3fdf5 0, #ffe6fa 100%);
+  --gradient-pink: linear-gradient(279deg, #397fa9 0%, #2d6d96 100%);
+  --gradient-header: linear-gradient(-225deg, #eaf1f7 0, #f4f8fc 100%);
 
   /* shoka migrate */
-  --box-bg-shadow: rgba(0, 0, 0, 0.1);
-  --grey-1-a5: rgba(253, 253, 253, 0.5);
-  --gradient-shoka-button-start: #ed6ea0;
-  --gradient-shoka-button-end: #ec8c69;
+  --box-bg-shadow: rgba(38, 59, 80, 0.08);
+  --grey-1-a5: rgba(244, 248, 252, 0.65);
+  --gradient-shoka-button-start: #397fa9;
+  --gradient-shoka-button-end: #2d6d96;
   --gradient-shoka-button: linear-gradient(
     to right,
     var(--gradient-shoka-button-start) 0,
     var(--gradient-shoka-button-end) 100%
   );
-  --shoka-blue: 201 69% 54%;
-  --grey-4: 0 0% 80%;
-  --color-pink: #ed6ea0;
-  --color-pink-a3: rgba(237, 110, 160, 0.3);
+  --shoka-blue: 203.4 53.8% 38.2%;
+  --grey-4: 209 14.2% 57.1%;
+  --color-pink: #397fa9;
+  --color-pink-a3: rgba(57, 127, 169, 0.25);
 
   /* Shoka container/effect colors (primary uses --primary from shadcn theme) */
-  --shoka-default: 0 0% 40%;
-  --shoka-info: 210 100% 50%;
-  --shoka-success: 142 76% 36%;
-  --shoka-warning: 45 100% 40%;
-  --shoka-danger: 0 84% 60%;
+  --shoka-default: 209.2 20.9% 34.7%;
+  --shoka-info: 202.5 49.6% 44.3%;
+  --shoka-success: 142 52% 38%;
+  --shoka-warning: 38 78% 46%;
+  --shoka-danger: 0 72% 56%;
 
   /* Named text colors — adapted for light/dark mode readability */
-  --color-red: #e74c3c;
-  --color-pink-text: #e91e63;
-  --color-orange: #f39c12;
-  --color-yellow: #d4a017;
-  --color-green: #27ae60;
-  --color-aqua: #1abc9c;
-  --color-blue: #2e86c1;
-  --color-purple: #8e44ad;
-  --color-grey: #7f8c8d;
+  --color-red: #d64545;
+  --color-pink-text: #2d6d96;
+  --color-orange: #d97706;
+  --color-yellow: #b45309;
+  --color-green: #2e8555;
+  --color-aqua: #2d6d96;
+  --color-blue: #397fa9;
+  --color-purple: #6d5cae;
+  --color-grey: #8292a1;
 }
 
 .dark {
-  --gradient-bg-start: #1d1a27;
-  --gradient-bg-end: #15121d;
+  --gradient-bg-start: #111d2a;
+  --gradient-bg-end: #0d1620;
   --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
-  --gradient-pink: linear-gradient(279deg, #f96676 0%, #e91e63 100%);
-  --gradient-header: linear-gradient(-225deg, #2a2438 0, #372739 100%);
+  --gradient-pink: linear-gradient(279deg, #6faad2 0%, #397fa9 100%);
+  --gradient-header: linear-gradient(-225deg, #1a2a3a 0, #223548 100%);
 
   /* shoka migrate */
-  --box-bg-shadow: rgba(6, 2, 16, 0.55);
-  --grey-1-a5: rgba(29, 26, 39, 0.5);
+  --box-bg-shadow: rgba(5, 12, 20, 0.55);
+  --grey-1-a5: rgba(17, 29, 42, 0.65);
 
-  --gradient-shoka-button-start: #f18bb3cc;
-  --gradient-shoka-button-end: #f0a387cc;
+  --gradient-shoka-button-start: #6faad2cc;
+  --gradient-shoka-button-end: #397fa9cc;
   --gradient-shoka-button: linear-gradient(
     to right,
     var(--gradient-shoka-button-start) 0,
     var(--gradient-shoka-button-end) 100%
   );
-  --shoka-blue: 201 69% 77%;
-  --grey-4: 262 8% 42%;
-  --color-pink: #f18bb3;
-  --color-pink-a3: rgba(237, 110, 160, 0.3);
+  --shoka-blue: 205 49.2% 76.5%;
+  --grey-4: 209.2 27.9% 36%;
+  --color-pink: #6faad2;
+  --color-pink-a3: rgba(111, 170, 210, 0.28);
 
   /* Shoka container/effect colors (dark mode) */
-  --shoka-default: 0 0% 60%;
-  --shoka-info: 210 100% 65%;
-  --shoka-success: 142 76% 50%;
-  --shoka-warning: 45 100% 55%;
-  --shoka-danger: 0 84% 70%;
+  --shoka-default: 207.7 26.5% 72%;
+  --shoka-info: 204.2 52.9% 62.9%;
+  --shoka-success: 142 60% 52%;
+  --shoka-warning: 42 86% 58%;
+  --shoka-danger: 0 76% 66%;
 
   /* Named text colors — brighter for dark backgrounds */
   --color-red: #f87171;
-  --color-pink-text: #f472b6;
+  --color-pink-text: #a5c8e1;
   --color-orange: #fbbf24;
   --color-yellow: #facc15;
   --color-green: #4ade80;
-  --color-aqua: #2dd4bf;
-  --color-blue: #60a5fa;
-  --color-purple: #c084fc;
-  --color-grey: #9ca3af;
+  --color-aqua: #8db6d3;
+  --color-blue: #6faad2;
+  --color-purple: #a78bfa;
+  --color-grey: #8292a1;
 }

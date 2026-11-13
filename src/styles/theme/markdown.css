@@ -1,17 +1,17 @@
 .prose {
   /* Typography plugin colors mapped to theme tokens, so light and dark prose share the site palette. */
-  --tw-prose-body: hsl(var(--foreground) / 0.9);
-  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--card-foreground));
   --tw-prose-lead: hsl(var(--muted-foreground));
   --tw-prose-links: hsl(var(--primary));
-  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-bold: hsl(var(--card-foreground));
   --tw-prose-counters: hsl(var(--primary));
   --tw-prose-bullets: hsl(var(--primary) / 0.7);
   --tw-prose-hr: hsl(var(--border));
-  --tw-prose-quotes: hsl(var(--foreground) / 0.78);
+  --tw-prose-quotes: hsl(var(--foreground) / 0.85);
   --tw-prose-quote-borders: hsl(var(--primary) / 0.45);
   --tw-prose-captions: hsl(var(--muted-foreground));
-  --tw-prose-kbd: hsl(var(--foreground));
+  --tw-prose-kbd: hsl(var(--card-foreground));
   --tw-prose-code: hsl(var(--primary));
   --tw-prose-th-borders: hsl(var(--border));
   --tw-prose-td-borders: hsl(var(--border) / 0.7);
@@ -526,7 +526,7 @@
 
 .dark {
   --code-surface: color-mix(in oklab, hsl(var(--card)) 80%, #000);
-  /* Lifted with the accent, not white: a white mix reads as cool grey against the night-sakura plum. */
+  /* Lifted with the accent, not white: a white mix reads as cool grey against the dark surface. */
   --code-toolbar: color-mix(in oklab, color-mix(in oklab, hsl(var(--card)) 88%, #000) 93%, hsl(var(--primary)));
   --code-border: hsl(var(--border) / 0.9);
 }

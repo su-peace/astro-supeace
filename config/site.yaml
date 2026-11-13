@@ -13,9 +13,9 @@
 site:
   title: 苏和の博客 # 网站名称
   alternate: supeace # 网站英文名称 用于页脚、Logo、@ handle 等
-  subtitle: 希望明天的世界依旧超级和平！ # 网站副标题
+  subtitle: 明天的世界依旧超级和平！ # 网站副标题
   name: supeace # 作者名称 - 请修改为你的名字
-  description: 军事爱好者 / HAM / P社战犯(bushi) # 网站描述
+  description: 军事爱好者 /  HAM / P社战犯(bushi) # 网站描述
   avatar: /img/avatar.webp # 网站头像
   showLogo: false # 是否显示图形 Logo；默认显示站点名称，启用后可替换 src/assets/svg/logo.svg
   author: superpeace # 作者名称 - 请修改为你的名字
@@ -172,7 +172,7 @@ featuredSeries:
 # -----------------------------------------------------------------------------
 social:
   github:
-    url: https://github.com/your-username # 替换为你的 GitHub 链接
+    url: https://github.com/su-peace # 替换为你的 GitHub 链接
     icon: ri:github-fill # Remix Icon 的 GitHub 图标
     color: "#191717" # (可选) 图标颜色
   email:

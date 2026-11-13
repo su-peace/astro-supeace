@@ -156,7 +156,7 @@ const titleMorph = postTitleMorphName(slug);
       <div class="flex items-center gap-2">
         <a href={href} class="min-w-0 flex-1 outline-none">
           <h2
-            class="text-primary hover:text-blue line-clamp-1 w-fit max-w-full truncate text-xl font-bold transition-colors duration-300"
+            class="text-primary hover:text-badge-primary dark:hover:text-blue line-clamp-1 w-fit max-w-full truncate text-xl font-bold transition-colors duration-300"
             transition:name={titleMorph}
             transition:animate="initial"
             data-morph={titleMorph}
@@ -208,7 +208,7 @@ const titleMorph = postTitleMorphName(slug);
           {tags.map((tag: string) => (
             <a href={localizedPath(buildTagPath(tag), locale)}>
               <Badge
-                className='hover:text-badge-primary/80 shrink-0 cursor-pointer gap-0.5 border-none px-1 text-xs font-bold whitespace-nowrap transition-colors duration-300 flex'
+                className="bg-secondary hover:bg-accent hover:text-badge-primary shrink-0 cursor-pointer gap-0.5 border-none px-1.5 text-xs font-bold whitespace-nowrap transition-colors duration-300 flex dark:bg-transparent"
                 variant="outline"
               >
                 <Icon name="fa6-solid:tags" /> {tag}
@@ -268,14 +268,14 @@ const titleMorph = postTitleMorphName(slug);
     .post-item-card:hover {
       transform: translateY(-0.25rem);
       box-shadow:
-        0 1.25rem 2.5rem -1.25rem rgb(233 84 107 / 0.4),
-        0 0.5rem 1.25rem -0.75rem rgb(90 97 105 / 0.22);
+        0 1.25rem 2.5rem -1.25rem rgb(57 127 169 / 0.25),
+        0 0.5rem 1.25rem -0.75rem rgb(38 59 80 / 0.16);
     }
 
     :global(.dark) .post-item-card:hover {
       box-shadow:
-        0 1.25rem 2.75rem -1.25rem rgb(240 123 145 / 0.32),
-        0 0.5rem 1.5rem -0.75rem rgb(0 0 0 / 0.5);
+        0 1.25rem 2.75rem -1.25rem rgb(111 170 210 / 0.24),
+        0 0.5rem 1.5rem -0.75rem rgb(0 0 0 / 0.55);
     }
 
     .post-item-card:hover .post-item-cover img {
@@ -284,7 +284,11 @@ const titleMorph = postTitleMorphName(slug);
     }
 
     .post-item-card:hover .post-item-more {
-      box-shadow: 0 0.4rem 1.1rem -0.3rem rgb(233 84 107 / 0.6);
+      box-shadow: 0 0.4rem 1.1rem -0.3rem rgb(45 109 150 / 0.5);
+    }
+
+    :global(.dark) .post-item-card:hover .post-item-more {
+      box-shadow: 0 0.4rem 1.1rem -0.3rem rgb(111 170 210 / 0.45);
     }
   }
 

@@ -1,13 +1,13 @@
 /* Pagefind Component UI theme overrides */
 
 :root {
-  --pf-text: #393939;
-  --pf-text-secondary: #666;
-  --pf-text-muted: #767676;
+  --pf-text: #46596b;
+  --pf-text-secondary: #8292a1;
+  --pf-text-muted: #8292a1;
   --pf-background: var(--gradient-bg-start);
-  --pf-border: #e5e5e5;
+  --pf-border: #dfe7ee;
   --pf-border-focus: hsl(var(--primary));
-  --pf-hover: hsl(var(--accent));
+  --pf-hover: hsl(var(--secondary));
   --pf-mark: hsl(var(--primary));
   --pf-outline-focus: hsl(var(--primary));
   --pf-font: inherit;
@@ -19,12 +19,12 @@
 }
 
 .dark {
-  --pf-text: #e5e5e5;
-  --pf-text-secondary: #b7b7b7;
-  --pf-text-muted: #a0a0a0;
-  --pf-border: rgba(255, 255, 255, 0.15);
+  --pf-text: #c2d0dc;
+  --pf-text-secondary: #8fa3b5;
+  --pf-text-muted: #8292a1;
+  --pf-border: #304355;
   --pf-border-focus: hsl(var(--primary));
-  --pf-hover: rgba(255, 255, 255, 0.08);
+  --pf-hover: hsl(var(--secondary));
   --pf-mark: hsl(var(--primary));
 }
 
@@ -102,11 +102,19 @@
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) .search-dialog .pf-searchbox-result:hover {
-  background: hsl(var(--primary) / 0.06);
+  background: hsl(var(--secondary));
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) .search-dialog .pf-searchbox-result[data-pf-selected] {
   outline: none;
+  background: hsl(var(--accent));
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) .dark .search-dialog .pf-searchbox-result:hover {
+  background: hsl(var(--primary) / 0.06);
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) .dark .search-dialog .pf-searchbox-result[data-pf-selected] {
   background: hsl(var(--primary) / 0.1);
 }
 

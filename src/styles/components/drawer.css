@@ -10,7 +10,7 @@
   inset: 0;
   z-index: 40;
   visibility: hidden;
-  background: rgb(24 12 30 / 0.46);
+  background: rgb(28 40 52 / 0.42);
   opacity: 0;
   transition:
     opacity var(--drawer-dur, 280ms) var(--ease-in-quart),
@@ -38,8 +38,8 @@
   border-radius: 0 1.5rem 1.5rem 0;
   background: var(--gradient-bg-start);
   box-shadow:
-    inset -1px 0 0 hsl(var(--primary) / 0.12),
-    1.5rem 0 3rem -1.5rem rgb(40 12 32 / 0.35);
+    inset -1px 0 0 hsl(var(--border)),
+    1.5rem 0 3rem -1.5rem rgb(52 73 93 / 0.25);
   /* Past the edge by the shadow's reach, so nothing of it peeks in while closed. */
   translate: calc(-100% - 3rem) 0;
   visibility: hidden;
@@ -172,7 +172,7 @@ html:is([data-motion="reduced"], .motion-off) .drawer-sheet[data-state="open"] {
   background: hsl(var(--popover));
   box-shadow:
     0 0 0 1px hsl(var(--border)),
-    0 1rem 2rem -1rem rgb(40 12 32 / 0.35);
+    0 1rem 2rem -1rem rgb(52 73 93 / 0.25);
   transform-origin: top right;
 }
 
