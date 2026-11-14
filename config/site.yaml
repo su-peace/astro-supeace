@@ -111,7 +111,7 @@ featuredCategories:
     description: 工具使用、效率提升
   - link: project
     label: 项目
-    image: /img/cover/14.webp
+    image: /img/cover/5.webp
     description: 玩具仓库、项目练习
 
 # =============================================================================
