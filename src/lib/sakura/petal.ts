@@ -18,12 +18,12 @@ export const CRYSTAL_BRANCHES_PATH =
   'M4.81 17.42L5.15 14.8L2.71 13.78' +
   'M2.71 10.22L5.15 9.2L4.81 6.58';
 
-/** Primary and secondary stroke colors per crystal variant (translucent, ethereal Azure & Lily frost palette). */
+/** Primary and secondary stroke colors per crystal variant (Shiroko Halo Cyan & Wolf Silver frost palette). */
 export const PETAL_COLORS: ReadonlyArray<readonly [tip: string, base: string]> = [
-  ['#ffffff', '#e2f0fd'],
-  ['#ffffff', '#cce5fc'],
-  ['#fcfdff', '#d9e3fb'],
-  ['#f0f7fe', '#bdddfa'],
+  ['#ffffff', '#d6f2fc'],
+  ['#ffffff', '#b8e8f8'],
+  ['#f7fbfe', '#dce6f2'],
+  ['#eef9fd', '#9adff5'],
 ];
 
 /**

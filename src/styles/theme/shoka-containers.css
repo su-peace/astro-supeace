@@ -88,6 +88,13 @@
 }
 
 /* Title styling inside note blocks */
+.note-block > .note-title {
+  font-weight: 600;
+  margin-bottom: 0.4em;
+}
+.note-block > .note-title > p {
+  margin: 0;
+}
 .note-block > :first-child,
 .note-block > .note-icon-mount + * {
   margin-top: 0;

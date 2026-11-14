@@ -42,11 +42,11 @@ export const colors = {
     foreground: 'hsl(var(--warning-foreground))',
   },
 
-  // Shoka theme accent (Azure & Lily 晴空与白百合 palette)
+  // Shoka theme accent (Shiroko 砂狼白子 · 苍狼与晴砂 palette)
   shoka: {
-    DEFAULT: '#6B9DE3',
-    light: '#83B4F1',
-    dark: '#4E81C7',
+    DEFAULT: '#2EB4DC',
+    light: '#64C7E8',
+    dark: '#249EC6',
   },
 
   // Theme toggle colors
@@ -210,14 +210,14 @@ export const shadows = {
   // Inner shadow
   inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
 
-  // Custom shadows from project (Midnight Navy + Sky Azure)
-  card: '0 0.625rem 1.875rem rgba(11, 19, 80, 0.06)',
-  'card-darker': '0 0.625rem 1.875rem rgba(11, 19, 80, 0.12)',
-  'shoka-button': '0px 4px 14px 0px rgba(78, 129, 199, 0.35)',
+  // Custom shadows from project (Tactical Charcoal + Halo Cyan)
+  card: '0 0.625rem 1.875rem rgba(20, 32, 50, 0.06)',
+  'card-darker': '0 0.625rem 1.875rem rgba(20, 32, 50, 0.12)',
+  'shoka-button': '0px 4px 14px 0px rgba(36, 158, 198, 0.35)',
 
   // Theme-tinted elevation for floating controls
-  'sakura-sm': '0 6px 16px -8px rgb(107 157 227 / 0.35), 0 2px 6px -3px rgb(11 19 80 / 0.10)',
-  'sakura-md': '0 10px 24px -10px rgb(107 157 227 / 0.42), 0 3px 8px -4px rgb(11 19 80 / 0.12)',
+  'sakura-sm': '0 6px 16px -8px rgb(46 180 220 / 0.35), 0 2px 6px -3px rgb(20 32 50 / 0.10)',
+  'sakura-md': '0 10px 24px -10px rgb(46 180 220 / 0.42), 0 3px 8px -4px rgb(20 32 50 / 0.12)',
 } as const;
 
 /**
@@ -419,8 +419,8 @@ export const zIndex = {
  * Multi-color arrays for gradients and backgrounds.
  */
 export const gridBackground = {
-  light: ['#6B9DE3', '#83B4F1', '#A8B1DC', '#C0C1E3', '#EAF1FA', '#F4F8FD'],
-  dark: ['#0A1124', '#111A33', '#182444', '#1F2E52', '#76A9E8', '#A8B1DC'],
+  light: ['#2EB4DC', '#64C7E8', '#9BAAC0', '#C4D2E2', '#E2EDF6', '#EEF4F9'],
+  dark: ['#0F141D', '#171E2B', '#1F2838', '#293548', '#56C5E8', '#9BAAC0'],
 } as const;
 
 /**

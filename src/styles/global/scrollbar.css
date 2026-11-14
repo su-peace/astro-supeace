@@ -24,14 +24,14 @@
   --silk-thread: hsl(var(--primary) / 0.28);
   /* The thread and the crystal hung from its end are shared with the TOC (toc.css). */
   /* Crystal shape: src/lib/sakura/petal.ts. */
-  --silk-petal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath fill='none' stroke='%234e81c7' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
-  --silk-petal-side: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath transform='translate(24 0) rotate(90)' fill='none' stroke='%234e81c7' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
+  --silk-petal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath fill='none' stroke='%23249ec6' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
+  --silk-petal-side: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath transform='translate(24 0) rotate(90)' fill='none' stroke='%23249ec6' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
 }
 
 .dark {
   --silk-thread: hsl(var(--primary) / 0.34);
-  --silk-petal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath fill='none' stroke='%2376a9e8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
-  --silk-petal-side: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath transform='translate(24 0) rotate(90)' fill='none' stroke='%2376a9e8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
+  --silk-petal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Cpath fill='none' stroke='%2356c5e8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
+  --silk-petal-side: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'%3E%3Cpath transform='translate(24 0) rotate(90)' fill='none' stroke='%2356c5e8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='M10 12L10 2.8M10 12L17.97 7.4M10 12L17.97 16.6M10 12L10 21.2M10 12L2.03 16.6M10 12L2.03 7.4M10 9.2L12.42 10.6L12.42 13.4L10 14.8L7.58 13.4L7.58 10.6Z'/%3E%3C/svg%3E");
 }
 
 @media (hover: hover) and (pointer: fine) {

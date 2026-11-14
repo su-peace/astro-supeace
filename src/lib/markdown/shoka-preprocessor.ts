@@ -31,6 +31,50 @@ interface ContainerOptions {
   enableHexoTags?: boolean;
 }
 
+type ShokaContainerStyle = 'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger';
+
+const OBSIDIAN_CALLOUT_STYLE_MAP: Record<string, ShokaContainerStyle> = {
+  // info
+  note: 'info',
+  info: 'info',
+  todo: 'info',
+  // primary
+  primary: 'primary',
+  abstract: 'primary',
+  summary: 'primary',
+  tldr: 'primary',
+  tip: 'primary',
+  hint: 'primary',
+  important: 'primary',
+  // success
+  success: 'success',
+  check: 'success',
+  done: 'success',
+  // warning
+  warning: 'warning',
+  caution: 'warning',
+  attention: 'warning',
+  question: 'warning',
+  help: 'warning',
+  faq: 'warning',
+  // danger
+  danger: 'danger',
+  failure: 'danger',
+  fail: 'danger',
+  missing: 'danger',
+  error: 'danger',
+  bug: 'danger',
+  // default
+  default: 'default',
+  example: 'default',
+  quote: 'default',
+  cite: 'default',
+};
+
+function mapObsidianCalloutStyle(rawType: string): ShokaContainerStyle {
+  return OBSIDIAN_CALLOUT_STYLE_MAP[rawType.toLowerCase()] ?? 'info';
+}
+
 /** Maximum nesting depth for recursive container processing */
 const MAX_CONTAINER_DEPTH = 10;
 
@@ -187,6 +231,58 @@ function processContainers(text: string, opts: ContainerOptions = {}, _depth = 0
       output.push('</div>');
       output.push('</details>');
       output.push('');
+      continue;
+    }
+
+    // Obsidian callout (> [!type][+-]? Optional title)
+    const calloutMatch = containers && line.match(/^\s*>\s*\[!([a-zA-Z0-9_-]+)\]([+-])?(?:[ \t]+(.*?))?\s*$/);
+    if (calloutMatch) {
+      flushTabs();
+      const rawType = calloutMatch[1];
+      const fold = calloutMatch[2];
+      const rawTitle = calloutMatch[3]?.trim() || '';
+      const style = mapObsidianCalloutStyle(rawType);
+      const innerLines: string[] = [];
+      i++;
+      while (i < lines.length && /^\s*>/.test(lines[i])) {
+        innerLines.push(lines[i].replace(/^\s*> ?/, ''));
+        i++;
+      }
+
+      if (fold === '+' || fold === '-') {
+        const summaryTitle = rawTitle || `${rawType.charAt(0).toUpperCase()}${rawType.slice(1).toLowerCase()}`;
+        const openAttr = fold === '+' ? ' open' : '';
+        output.push('');
+        output.push(`<details class="collapse-block collapse-${style}"${openAttr}>`);
+        output.push(`<summary>${escapeHtml(summaryTitle)}</summary>`);
+        output.push(`<div class="collapse-content">`);
+        if (innerLines.length > 0) {
+          output.push('');
+          output.push(processContainers(innerLines.join('\n'), opts, _depth + 1));
+          output.push('');
+        }
+        output.push('</div>');
+        output.push('</details>');
+        output.push('');
+      } else {
+        output.push('');
+        output.push(`<div class="note-block note-${style}">`);
+        if (rawTitle) {
+          output.push('');
+          output.push('<div class="note-title">');
+          output.push('');
+          output.push(rawTitle);
+          output.push('');
+          output.push('</div>');
+        }
+        if (innerLines.length > 0) {
+          output.push('');
+          output.push(processContainers(innerLines.join('\n'), opts, _depth + 1));
+          output.push('');
+        }
+        output.push('</div>');
+        output.push('');
+      }
       continue;
     }
 

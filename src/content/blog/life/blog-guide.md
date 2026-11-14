@@ -273,6 +273,48 @@ println!("Hello from Rust!");
 
 ---
 
+### 4. Obsidian Callout 自动兼容
+
+直接粘贴 Obsidian 的 `> [!type]` 语法即可自动转换为对应的提醒块或折叠块，无需手动删改 `>`：
+
+- **普通 Callout**（`>[!type]` 或 `> [!type] 标题`）→ 自动渲染为提醒块（支持标题内嵌公式、内部多级列表等）
+- **可折叠 Callout**（`> [!type]+ 标题` 默认展开、`> [!type]- 标题` 默认收起）→ 自动渲染为折叠详情块
+- **类型映射**：
+  - `info`：`note`、`info`、`todo`
+  - `primary`：`tip`、`hint`、`important`、`abstract`、`summary`、`tldr`、`primary`
+  - `success`：`success`、`check`、`done`
+  - `warning`：`warning`、`caution`、`attention`、`question`、`help`、`faq`
+  - `danger`：`danger`、`failure`、`fail`、`missing`、`error`、`bug`
+  - `default`：`example`、`quote`、`cite`、`default`
+
+```markdown
+>[!note]
+>无标题的 Obsidian Callout，自动渲染为信息提醒块。
+
+>[!tip] 带标题与公式的提示块（$E = mc^2$）
+>1. 支持有序与无序列表
+>	- 支持保留 Tab / 空格缩进的子列表
+>2. 支持块级公式：$$X = A_{dp} A_{sp}^T$$
+
+> [!warning]- 点击展开查看注意事项（默认折叠）
+> 使用 `-` 号时渲染为默认收起的折叠块；使用 `+` 号时默认展开。
+```
+
+**展示效果**：
+
+> [!note]
+>无标题的 Obsidian Callout，自动渲染为信息提醒块。
+
+> [!tip] 带标题与公式的提示块（$E = mc^2$）
+>1. 支持有序与无序列表
+>	- 支持保留 Tab / 空格缩进的子列表
+>2. 支持块级公式：$$X = A_{dp} A_{sp}^T$$
+
+> [!warning]- 点击展开查看注意事项（默认折叠）
+> 使用 `-` 号时渲染为默认收起的折叠块；使用 `+` 号时默认展开。
+
+---
+
 ## 四、代码块增强与参数
 
 代码块基于 Shiki 语法高亮，并扩展了丰富的元参数：
