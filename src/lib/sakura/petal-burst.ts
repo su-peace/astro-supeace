@@ -65,7 +65,7 @@ function simulateFlight(x: number, y: number, depth: number): { keyframes: Keyfr
     const flipX = Math.sign(cos || 1) * Math.max(Math.abs(cos), 0.14);
     const drift = Math.sin(sway.phase + sway.frequency * t) * sway.amplitude * (1 - Math.exp(-3 * t));
     const angleDeg = rotation + (spin * (1 - Math.exp(-1.4 * t))) / 1.4;
-    const opacity = progress < 0.45 ? 1 : 1 - smoothstep((progress - 0.45) / 0.55);
+    const opacity = (progress < 0.35 ? 0.8 : 0.8 * (1 - smoothstep((progress - 0.35) / 0.65))) * (0.6 + depth * 0.4);
     keyframes.push({
       transform: `translate(${(px + drift).toFixed(1)}px, ${py.toFixed(1)}px) rotate(${angleDeg.toFixed(1)}deg) scale(${(scale * flipX).toFixed(3)}, ${scale.toFixed(3)})`,
       opacity: opacity.toFixed(3),
@@ -94,7 +94,8 @@ function burstAt(x: number, y: number): void {
     petal.style.height = `${size * 1.2}px`;
     petal.style.margin = `${-size * 0.6}px 0 0 ${-size / 2}px`;
     // The base color reaches further up than on the cover so the snowflakes still read on white cards.
-    petal.style.background = `linear-gradient(${tip}, ${base} 65%)`;
+    petal.style.background = `linear-gradient(${tip}, ${base} 70%)`;
+    petal.style.filter = 'drop-shadow(0 0 2px rgba(255, 255, 255, 0.7))';
     host.append(petal);
 
     const { keyframes, duration } = simulateFlight(x, y, depth);

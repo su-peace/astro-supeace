@@ -12,7 +12,7 @@ export const portraitHeroTransform = {
   height: 450,
   densities: [1, 2, 3],
   fit: 'cover' as const,
-  position: 'centre',
+  position: 'right',
 };
 export const defaultHeroSrcset =
   '/img/site_header_800.webp 800w, /img/site_header_1200.webp 1200w, /img/site_header_1600.webp 1600w, /img/site_header_1920.webp 1928w';

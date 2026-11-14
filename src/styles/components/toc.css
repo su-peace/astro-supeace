@@ -271,14 +271,14 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#8db6d3, #397fa9);
+  background: linear-gradient(#83b4f1, #4e81c7);
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: contain;
 }
 
 .dark .toc-petal > span {
-  background: linear-gradient(#a5c8e1, #6faad2);
+  background: linear-gradient(#a8b1dc, #76a9e8);
 }
 
 /*

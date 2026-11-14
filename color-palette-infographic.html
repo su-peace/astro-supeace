@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晴空与白百合 · 主题色彩设计规范 - Infographic</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: #f4f8fd;
+      color: #0b1350;
+      overflow: hidden;
+    }
+    .app-header {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: #ffffff;
+      border-bottom: 1px solid #d8e5f6;
+      box-shadow: 0 2px 10px rgba(11, 19, 80, 0.04);
+      z-index: 10;
+      position: relative;
+    }
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .color-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6b9de3 0%, #232b5d 100%);
+      box-shadow: 0 0 0 3px rgba(107, 157, 227, 0.25);
+    }
+    h1 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0;
+      color: #0b1350;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #7a86b6;
+      margin-left: 6px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      padding: 8px 18px;
+      background: #6b9de3;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(107, 157, 227, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: #4e81c7;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(107, 157, 227, 0.45);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+    #container {
+      width: 100%;
+      height: calc(100% - 64px);
+      padding: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-title">
+      <div class="color-dot"></div>
+      <h1>晴空与白百合 (Azure & Lily) · 主题色彩设计规范</h1>
+      <span class="subtitle">AntV Infographic 可视化设计</span>
+    </div>
+    <div class="actions">
+      <button class="btn" id="exportBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        导出 SVG
+      </button>
+    </div>
+  </header>
+
+  <div id="container"></div>
+
+  <script src="https://unpkg.com/@antv/infographic@latest/dist/infographic.min.js"></script>
+  <script>
+    // 资源加载器：支持 Iconify 图标与 unDraw 插画
+    const svgTextCache = new Map();
+    const pendingRequests = new Map();
+
+    AntVInfographic.registerResourceLoader(async (config) => {
+      const { data, scene } = config;
+      try {
+        const key = `${scene}::${data}`;
+        let svgText;
+
+        if (svgTextCache.has(key)) {
+          svgText = svgTextCache.get(key);
+        } else if (pendingRequests.has(key)) {
+          svgText = await pendingRequests.get(key);
+        } else {
+          const fetchPromise = (async () => {
+            try {
+              let url;
+              if (scene === 'icon') {
+                url = `https://api.iconify.design/${data}.svg`;
+              } else if (scene === 'illus') {
+                url = `https://raw.githubusercontent.com/balazser/undraw-svg-collection/refs/heads/main/svgs/${data}.svg`;
+              } else return null;
+
+              if (!url) return null;
+              const response = await fetch(url, { referrerPolicy: 'no-referrer' });
+              if (!response.ok) return null;
+              const text = await response.text();
+              if (!text || !text.trim().startsWith('<svg')) return null;
+              svgTextCache.set(key, text);
+              return text;
+            } catch (_err) {
+              return null;
+            }
+          })();
+
+          pendingRequests.set(key, fetchPromise);
+          try {
+            svgText = await fetchPromise;
+          } finally {
+            pendingRequests.delete(key);
+          }
+        }
+
+        if (!svgText) return null;
+        return AntVInfographic.loadSVGResource(svgText);
+      } catch (_error) {
+        return null;
+      }
+    });
+  </script>
+
+  <script>
+    const syntax = `infographic list-grid-ribbon-card
+data
+  title 晴空与白百合 · 主题色彩体系
+  desc 灵感源自纯白百合、银发少女、深绀缎带与清透蔚蓝苍穹的轻灵宁静色彩体系
+  items
+    - label 苍穹晴蓝 (Sky Azure)
+      desc #6B9DE3 核心主品牌色，应用于重点按钮、交互悬浮、高亮标题与链接
+      icon mdi/weather-sunny
+    - label 深海暗绀 (Midnight Navy)
+      desc #0B1350 高对比文字主色、徽标深色底色及暗色模式的核心深渊基底
+      icon mdi/palette-swatch
+    - label 百合清白 (Lily White)
+      desc #F4F8FD 页面主背景与卡片纯净质感，营造纯洁通透的高级留白感
+      icon mdi/flower
+    - label 紫藤微影 (Periwinkle Lilac)
+      desc #A8B1DC 少女银发阴影与柔和次级边框，平衡冷暖与视觉层级
+      icon mdi/star-four-points
+    - label 苍翠茎绿 (Sage Green)
+      desc #789483 百合花茎自然灰绿，作为状态成功、健康提示与自然分类标签
+      icon mdi/leaf
+    - label 蕊芯暖金 (Champagne Gold)
+      desc #E5D2BB 花蕊温润点睛之笔，用于微光点缀、警告提示与评分星级
+      icon mdi/flare
+theme
+  palette
+    - #6b9de3
+    - #2e3667
+    - #a8b1dc
+    - #789483
+    - #e5d2bb
+    - #5390d9`;
+
+    const infographic = new AntVInfographic.Infographic({
+      container: '#container',
+      width: '100%',
+      height: '100%',
+    });
+
+    infographic.render(syntax);
+    document.fonts?.ready.then(() => {
+      infographic.render(syntax);
+    }).catch(console.error);
+
+    document.getElementById('exportBtn').addEventListener('click', async () => {
+      try {
+        const svgDataUrl = await infographic.toDataURL({ type: 'svg' });
+        const a = document.createElement('a');
+        a.href = svgDataUrl;
+        a.download = 'azure-lily-color-palette.svg';
+        a.click();
+      } catch (err) {
+        alert(`导出 SVG 失败: ${err.message}`);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -28,8 +28,18 @@
 
 .cover-copy :is(h1, h2) {
   text-shadow:
-    0 0.15rem 0.35rem rgb(28 8 20 / 0.45),
-    0 0.4rem 1.6rem rgb(233 84 107 / 0.35);
+    0 0.15rem 0.35rem rgb(11 19 80 / 0.45),
+    0 0.4rem 1.6rem rgb(107 157 227 / 0.25);
+}
+
+#banner-box img {
+  object-position: center;
+}
+
+@media (max-width: 992px) {
+  #banner-box img {
+    object-position: 75% center;
+  }
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {

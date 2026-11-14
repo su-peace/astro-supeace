@@ -39,7 +39,7 @@ function validateTarEntryTypes(archivePath: string, entryCount: number): void {
     throw new Error(`tar verbose list failed: ${result.stderr?.toString() || 'unknown error'}`);
   }
 
-  const lines = result.stdout.split('\n').filter(Boolean);
+  const lines = result.stdout.split(/\r?\n/).filter(Boolean);
   if (lines.length !== entryCount) {
     throw new Error(`tar verbose listing is inconsistent: ${archivePath}`);
   }
@@ -60,7 +60,7 @@ function listTarEntries(archivePath: string): string[] {
   if (result.status !== 0) {
     throw new Error(`tar list failed: ${result.stderr?.toString() || 'unknown error'}`);
   }
-  const entries = result.stdout.split('\n').filter(Boolean);
+  const entries = result.stdout.split(/\r?\n/).filter(Boolean);
   validateTarEntries(entries, archivePath);
   validateTarEntryTypes(archivePath, entries.length);
   return entries;

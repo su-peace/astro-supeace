@@ -228,7 +228,8 @@ function isMigratedFrontmatterValid(updated: string, expectedLink: string): bool
 
 function displayPath(filePath: string): string {
   const relativePath = path.relative(PROJECT_ROOT, filePath);
-  return relativePath.startsWith('..') ? filePath : relativePath;
+  const result = relativePath.startsWith('..') ? filePath : relativePath;
+  return result.replaceAll(path.sep, '/');
 }
 
 function collectContentFiles(contentDir: string): {

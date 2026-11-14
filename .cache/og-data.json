@@ -25,25 +25,23 @@
     "data": {
       "originUrl": "https://github.com/vercel/react-tweet",
       "url": "https://github.com/vercel/react-tweet",
-      "error": "fetch failed"
+      "title": "GitHub - vercel/react-tweet: Embed tweets in your React application.",
+      "description": "Embed tweets in your React application. Contribute to vercel/react-tweet development by creating an account on GitHub.",
+      "image": "https://opengraph.githubassets.com/ad08ff11a8c065df661a7756add6ce3450c5f9fa5d4acff56680f93a29678d33/vercel/react-tweet",
+      "logo": "https://github.com/fluidicon.png"
     },
-    "timestamp": 1794548925137
-  },
-  "https://zhuanlan.zhihu.com/p/1900483903984243480": {
-    "data": {
-      "originUrl": "https://zhuanlan.zhihu.com/p/1900483903984243480",
-      "url": "https://zhuanlan.zhihu.com/p/1900483903984243480",
-      "error": "Failed to fetch: 403"
-    },
-    "timestamp": 1794548926142
+    "timestamp": 1794648789101
   },
   "https://github.com/cosZone/astro-koharu": {
     "data": {
       "originUrl": "https://github.com/cosZone/astro-koharu",
       "url": "https://github.com/cosZone/astro-koharu",
-      "error": "fetch failed"
+      "title": "GitHub - cosZone/astro-koharu: astro-koharu 是一个萌系/二次元/粉蓝配色的 astro 主题博客，灵感来自 Hexo 的 Shoka 主题，加了很多自己的小巧思，性能优越。",
+      "description": "astro-koharu 是一个萌系/二次元/粉蓝配色的 astro 主题博客，灵感来自 Hexo 的 Shoka 主题，加了很多自己的小巧思，性能优越。 - cosZone/astro-koharu",
+      "image": "https://opengraph.githubassets.com/0fc427eda873e3333cb3e47cf86f6cbae283b267f3f54840f132ddcd74b54e6f/cosZone/astro-koharu",
+      "logo": "https://github.com/fluidicon.png"
     },
-    "timestamp": 1794548926005
+    "timestamp": 1794648788977
   },
   "https://react-tweet.vercel.app/": {
     "data": {

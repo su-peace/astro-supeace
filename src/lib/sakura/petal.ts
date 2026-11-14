@@ -18,12 +18,12 @@ export const CRYSTAL_BRANCHES_PATH =
   'M4.81 17.42L5.15 14.8L2.71 13.78' +
   'M2.71 10.22L5.15 9.2L4.81 6.58';
 
-/** Primary and secondary stroke colors per crystal variant (Azure Dove UN-blue/white palette). */
+/** Primary and secondary stroke colors per crystal variant (translucent, ethereal Azure & Lily frost palette). */
 export const PETAL_COLORS: ReadonlyArray<readonly [tip: string, base: string]> = [
-  ['#eaf1f7', '#397fa9'],
-  ['#a5c8e1', '#2d6d96'],
-  ['#f4f8fc', '#6faad2'],
-  ['#8db6d3', '#397fa9'],
+  ['#ffffff', '#e2f0fd'],
+  ['#ffffff', '#cce5fc'],
+  ['#fcfdff', '#d9e3fb'],
+  ['#f0f7fe', '#bdddfa'],
 ];
 
 /**
@@ -43,21 +43,34 @@ export function createPetalSprites(scale: number): HTMLCanvasElement[] {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
+    // Soft crystalline glow for delicate luminescence
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.65)';
+    ctx.shadowBlur = 1.5;
+
+    // Delicate secondary branches in pale frost tone
     ctx.strokeStyle = base;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 0.95;
     ctx.stroke(branchesPath);
 
+    // Primary crystal radial axes
     const gradient = ctx.createLinearGradient(2, 2.8, 18, 21.2);
     gradient.addColorStop(0, tip);
     gradient.addColorStop(1, base);
     ctx.strokeStyle = gradient;
-    ctx.lineWidth = 1.8;
+    ctx.lineWidth = 1.15;
     ctx.stroke(axesPath);
+
+    // Crystal center glint
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(10, 12, 0.75, 0, Math.PI * 2);
+    ctx.fill();
+
     return canvas;
   });
 }
 
 /** CSS mask for DOM snowflakes (the click burst), matching the 6-fold Azure Crystal geometry. */
 export const PETAL_MASK = `url("data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${PETAL_VIEWBOX.width} ${PETAL_VIEWBOX.height}'><path d='${CRYSTAL_AXES_PATH}${CRYSTAL_BRANCHES_PATH}' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>`,
+  `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${PETAL_VIEWBOX.width} ${PETAL_VIEWBOX.height}'><path d='${CRYSTAL_AXES_PATH}${CRYSTAL_BRANCHES_PATH}' fill='none' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/></svg>`,
 )}")`;

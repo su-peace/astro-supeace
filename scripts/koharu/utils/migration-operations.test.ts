@@ -13,6 +13,18 @@ import { applyContentMigration, planContentMigration, runContentMigration } from
 import { getRestorePreview, restoreBackup } from './restore-operations';
 import { tarCreate } from './tar';
 
+const canSymlink = (() => {
+  if (process.platform !== 'win32') return true;
+  try {
+    const temp = path.join(os.tmpdir(), `symlink-test-${Date.now()}`);
+    fs.symlinkSync('test', temp);
+    fs.rmSync(temp, { force: true });
+    return true;
+  } catch {
+    return false;
+  }
+})();
+
 function writeSiteConfig(root: string, enableSlugTransliteration = false): string {
   const configPath = path.join(root, 'config/site.yaml');
   fs.mkdirSync(path.dirname(configPath), { recursive: true });
@@ -71,7 +83,10 @@ test('blog content glob excludes underscore-prefixed files and directories', () 
       cwd: root,
       ignore: excludes.map((pattern) => pattern.replace(/^!/, '')),
       nodir: true,
-    }).toSorted();
+      posix: true,
+    })
+      .map((entry) => entry.replaceAll('\\', '/'))
+      .toSorted();
 
     assert.deepEqual(matches, ['normal.md', 'note/visible.mdx']);
     assert.equal(isBlogContentFile('normal.md'), true);
@@ -177,7 +192,7 @@ test('generated links preserve Astro legacy path slugs', () => {
 
     assert.deepEqual(plan.errors, []);
     assert.deepEqual(
-      plan.changes.map(({ sourcePath, link }) => [path.relative(contentDir, sourcePath), link]),
+      plan.changes.map(({ sourcePath, link }) => [path.relative(contentDir, sourcePath).replaceAll(path.sep, '/'), link]),
       [
         ['Camel Case.md', 'camel-case'],
         ['Foo Bar/index.md', 'foo-bar'],
@@ -313,7 +328,7 @@ test('content migration ignores underscore paths and their duplicate links', () 
   }
 });
 
-test('content migration rejects symlinks without writing their external targets', () => {
+test('content migration rejects symlinks without writing their external targets', { skip: !canSymlink }, () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-migrate-symlink-content-'));
   const external = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-migrate-symlink-external-'));
   try {
@@ -471,7 +486,7 @@ test('apply rechecks content immediately before installing an atomic write', (co
   }
 });
 
-test('atomic migration writes preserve the source file mode', () => {
+test('atomic migration writes preserve the source file mode', { skip: process.platform === 'win32' }, () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-migrate-file-mode-'));
   try {
     const configPath = writeSiteConfig(root);
@@ -666,7 +681,7 @@ test('restore previews report the migration errors that fail a non-interactive r
   }
 });
 
-test('restore rejects symlinked targets without deleting external files', () => {
+test('restore rejects symlinked targets without deleting external files', { skip: !canSymlink }, () => {
   const workspace = createTestWorkspace('koharu-restore-symlink-target-');
   const root = workspace.root;
   const external = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-restore-symlink-external-'));

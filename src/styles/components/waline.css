@@ -5,25 +5,25 @@
  * CSS 变量参考: https://waline.js.org/reference/client/style.html
  */
 :root body {
-  /* === 主题色 (Theme Colors - Azure Dove) === */
+  /* === 主题色 (Theme Colors - Azure & Lily) === */
   /* 主要主题色，用于按钮、链接等交互元素 */
-  --waline-theme-color: #397fa9;
+  --waline-theme-color: #4e81c7;
   /* 激活状态颜色，用于悬停、焦点状态 */
-  --waline-active-color: #2d6d96;
+  --waline-active-color: #232b5d;
   --waline-light-grey: hsl(var(--muted-foreground));
 }
 
 /* === 暗色模式 (Dark Mode) === */
 html.dark body {
   /* 主题色 - 暗色模式下使用更亮的颜色以保持对比度 */
-  --waline-theme-color: #6faad2;
-  --waline-active-color: #a5c8e1;
+  --waline-theme-color: #76a9e8;
+  --waline-active-color: #a8b1dc;
   --waline-light-grey: hsl(var(--muted-foreground));
 
-  --waline-color: #c2d0dc;
-  --waline-disable-bg-color: hsl(210, 35.8%, 20.8%);
-  --waline-info-bg-color: #223548;
-  --waline-info-color: #e5edf4;
+  --waline-color: #e6edf8;
+  --waline-disable-bg-color: hsl(224, 44.6%, 19.8%);
+  --waline-info-bg-color: #111a33;
+  --waline-info-color: #e6edf8;
 }
 
 /* === 额外的样式优化 (Additional Styles) === */

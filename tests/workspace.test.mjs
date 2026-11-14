@@ -7,6 +7,7 @@ import test from 'node:test';
 
 const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 const workspaceYaml = readFileSync(new URL('../pnpm-workspace.yaml', import.meta.url), 'utf8');
+const pnpm = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
 
 test('cms:install honors workspace build approvals and shares the root lockfile', () => {
   const root = mkdtempSync(path.join(os.tmpdir(), 'koharu-workspace-'));
@@ -32,10 +33,11 @@ test('cms:install honors workspace build approvals and shares the root lockfile'
         scripts: { install: "node -e \"require('node:fs').writeFileSync('built.txt', 'ok')\"" },
       }),
     );
-    execFileSync('pnpm', ['pack', '--pack-destination', root], {
+    execFileSync(pnpm, ['pack', '--pack-destination', root], {
       cwd: path.join(root, 'build-fixture'),
       stdio: 'pipe',
       timeout: 20_000,
+      shell: process.platform === 'win32',
     });
     writeFileSync(
       path.join(root, 'cms', 'package.json'),
@@ -46,10 +48,11 @@ test('cms:install honors workspace build approvals and shares the root lockfile'
       }),
     );
 
-    execFileSync('pnpm', ['cms:install', '--offline', '--store-dir', path.join(root, 'store')], {
+    execFileSync(pnpm, ['cms:install', '--offline', '--store-dir', path.join(root, 'store')], {
       cwd: root,
       stdio: 'pipe',
       timeout: 20_000,
+      shell: process.platform === 'win32',
     });
 
     assert.ok(

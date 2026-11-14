@@ -11,6 +11,18 @@ import { getRestorePreview, restoreBackup } from './restore-operations';
 import { tarCreate, tarExtract } from './tar';
 import { validateBackupArchive, withValidatedBackupArchiveSnapshot } from './validation';
 
+const canSymlink = (() => {
+  if (process.platform !== 'win32') return true;
+  try {
+    const temp = path.join(os.tmpdir(), `symlink-test-${Date.now()}`);
+    fs.symlinkSync('test', temp);
+    fs.rmSync(temp, { force: true });
+    return true;
+  } catch {
+    return false;
+  }
+})();
+
 /** Every test runs against a throwaway workspace so the project's real backups are never touched. */
 function createTestWorkspace(prefix: string): KoharuWorkspace {
   const workspace = createWorkspace(fs.mkdtempSync(path.join(os.tmpdir(), prefix)));
@@ -79,7 +91,9 @@ test('backup archives are private and historical v1 manifests remain valid', () 
     writeBasicManifest(stage, [], null);
     const archive = createArchive(workspace, stage);
 
-    assert.equal(fs.statSync(archive).mode & 0o777, 0o600);
+    if (process.platform !== 'win32') {
+      assert.equal(fs.statSync(archive).mode & 0o777, 0o600);
+    }
     assert.equal(validateBackupArchive(archive, workspace.backupDir).manifest.schemaVersion, 1);
   } finally {
     fs.rmSync(stage, { recursive: true, force: true });
@@ -108,7 +122,9 @@ test('validation and extraction use one private immutable archive snapshot', () 
       (validated) => {
         snapshotPath = validated.path;
         assert.notEqual(snapshotPath, originalArchive);
-        assert.equal(fs.statSync(snapshotPath).mode & 0o777, 0o400);
+        if (process.platform !== 'win32') {
+          assert.equal(fs.statSync(snapshotPath).mode & 0o777, 0o400);
+        }
 
         fs.copyFileSync(replacementArchive, originalArchive);
         tarExtract(validated.path, extractDir);
@@ -232,7 +248,7 @@ test('historical full image snapshots supersede the overlapping avatar item', ()
   }
 });
 
-test('backup source validation rejects contract mismatches and nested symlinks', () => {
+test('backup source validation rejects contract mismatches and nested symlinks', { skip: !canSymlink }, () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-backup-source-contract-'));
   const external = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-backup-source-external-'));
   const directoryItem = BACKUP_ITEMS.find((item) => item.dest === 'content/blog');
@@ -319,7 +335,7 @@ test('restore rejects archive items whose type disagrees with the backup contrac
   }
 });
 
-test('restore rejects symlink archive entries before extraction', () => {
+test('restore rejects symlink archive entries before extraction', { skip: !canSymlink }, () => {
   const workspace = createTestWorkspace('koharu-restore-archive-symlink-target-');
   const external = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-restore-archive-symlink-external-'));
   const stage = fs.mkdtempSync(path.join(os.tmpdir(), 'koharu-restore-archive-symlink-stage-'));
