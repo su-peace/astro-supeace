@@ -8,23 +8,35 @@
 */
 
 .sider-column {
-  --sider-surface: var(--gradient-bg-start);
+  --sider-surface: hsl(var(--card));
 }
 
 .sider-column::after {
-  content: "";
-  position: absolute;
-  inset-block: 2rem;
-  right: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    hsl(var(--primary) / 0.18) 18%,
-    hsl(var(--primary) / 0.18) 82%,
-    transparent
-  );
-  pointer-events: none;
+  display: none;
+}
+
+.page-home-sider .home-info[data-variant="sider"],
+.page-home-sider [data-slot-type="directory"],
+.page-home-sider [data-slot-type="series"] {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  box-shadow: var(--box-bg-shadow) 0px 5px 15px;
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+
+.dark .page-home-sider .home-info[data-variant="sider"],
+.dark .page-home-sider [data-slot-type="directory"],
+.dark .page-home-sider [data-slot-type="series"] {
+  border-color: hsl(var(--border) / 0.3);
+}
+
+.page-home-sider .home-info[data-variant="sider"] {
+  padding: 1.25rem 1rem 1rem;
+}
+
+.page-home-sider [data-slot-type="directory"],
+.page-home-sider [data-slot-type="series"] {
+  padding: 1rem 0.75rem;
 }
 
 .drawer-sider {
@@ -279,7 +291,7 @@ html:is([data-motion="reduced"], .motion-off) .home-greeting {
 .home-info[data-variant="sider"] .home-identity {
   flex-direction: column;
   gap: 0;
-  padding-top: 1.75rem;
+  padding-top: 0.5rem;
   text-align: center;
 }
 

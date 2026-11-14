@@ -1,13 +1,13 @@
 :root {
-  --gradient-bg-start: #f4f8fd;
-  --gradient-bg-end: #eaf1fa;
+  --gradient-bg-start: #e7eff8;
+  --gradient-bg-end: #d8e5f5;
   --gradient-bg: linear-gradient(180deg, var(--gradient-bg-start) 10%, var(--gradient-bg-end) 100%);
   --gradient-pink: linear-gradient(279deg, #6b9de3 0%, #4e81c7 100%);
-  --gradient-header: linear-gradient(-225deg, #eaf1fa 0, #f4f8fd 100%);
+  --gradient-header: linear-gradient(-225deg, #d8e5f5 0, #e7eff8 100%);
 
   /* shoka migrate */
-  --box-bg-shadow: rgba(11, 19, 80, 0.06);
-  --grey-1-a5: rgba(244, 248, 253, 0.75);
+  --box-bg-shadow: rgba(11, 19, 80, 0.08);
+  --grey-1-a5: rgba(231, 239, 248, 0.75);
   --gradient-shoka-button-start: #6b9de3;
   --gradient-shoka-button-end: #4e81c7;
   --gradient-shoka-button: linear-gradient(

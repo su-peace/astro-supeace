@@ -86,8 +86,14 @@
     padding: 0.15rem 0.375rem;
 
     /* 字体 */
+    font-family: var(--font-mono);
     font-size: 0.9em;
     font-weight: 500;
+    font-variant-ligatures: none;
+    font-feature-settings:
+      "liga" 0,
+      "calt" 0;
+    font-size-adjust: from-font;
 
     word-break: break-word;
     -webkit-box-decoration-break: clone;
@@ -155,7 +161,7 @@
     opacity: 0.5;
 
     /* 等宽字体 */
-    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-family: var(--font-mono);
 
     transition: opacity 0.3s ease;
   }
@@ -383,6 +389,11 @@
     position: relative;
     border-radius: 0 0 0.75rem 0.75rem;
     border: 1px solid var(--code-border);
+    font-family: var(--font-mono);
+    font-variant-ligatures: none;
+    font-feature-settings:
+      "liga" 0,
+      "calt" 0;
     /* 重置 Typography 默认 padding */
     padding: 0;
     padding-inline-end: 0;
@@ -397,7 +408,13 @@
     padding: 1rem 1.5rem;
     overflow-x: auto;
     /* The parent pre already carries Typography's relative code scale. */
+    font-family: var(--font-mono);
     font-size: inherit;
+    font-variant-ligatures: none;
+    font-feature-settings:
+      "liga" 0,
+      "calt" 0;
+    font-size-adjust: from-font;
     line-height: 1.7;
     tab-size: 2;
     /* 覆盖 Typography 默认值 */
@@ -986,8 +1003,27 @@
   padding: 1rem var(--code-gutter);
   overflow: auto;
   overscroll-behavior: contain;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "liga" 0,
+    "calt" 0;
+  font-size-adjust: from-font;
   line-height: 1.7;
+}
+
+@supports not (font-size-adjust: from-font) {
+  .prose :not(pre) > code {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+
+  .prose pre code,
+  .code-fullscreen-content {
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
 }
 
 .code-fullscreen-content > code {

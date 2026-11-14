@@ -11,7 +11,8 @@
 }
 
 .editor-workspace {
-  --editor-mono: "SFMono-Regular", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+  --editor-mono:
+    "Maple Mono", "寒蝉全圆体", "Gen Jyuu Gothic P", "SFMono-Regular", "JetBrains Mono", Consolas, "Liberation Mono", monospace;
   --editor-hairline: hsl(var(--border) / 0.7);
   --editor-control: hsl(var(--muted) / 0.55);
   --editor-hover: hsl(var(--foreground) / 0.06);
@@ -291,6 +292,10 @@
 .editor-code .cm-content,
 .editor-code .cm-scroller {
   color: hsl(var(--foreground));
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "liga" 0,
+    "calt" 0;
 }
 .editor-code .cm-activeLine {
   background: hsl(var(--primary) / 0.035);

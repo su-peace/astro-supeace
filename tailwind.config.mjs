@@ -126,6 +126,18 @@ export default {
       fontFamily: {
         sans: ['寒蝉全圆体', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
         'chill-round': ['寒蝉全圆体', 'sans-serif'],
+        mono: [
+          'Maple Mono',
+          '寒蝉全圆体',
+          'Gen Jyuu Gothic P',
+          'ui-monospace',
+          'SFMono-Regular',
+          'SF Mono',
+          'Menlo',
+          'Consolas',
+          'Liberation Mono',
+          'monospace',
+        ],
       },
       clipPath: {
         'post-img-left': 'polygon(0 0,92% 0%,100% 100%,0% 100%)',

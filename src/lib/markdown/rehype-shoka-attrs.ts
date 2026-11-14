@@ -80,13 +80,60 @@ export function rehypeShokaAttrs() {
       }
     });
 
-    // Pass 2: Handle list item trailing {.class} AND trailing {.class} after element siblings
+    // Pass 2: Handle inline [text]{.class} in text nodes
+    // Must run BEFORE list item trailing attrs, so [text]{.class} at the end of a list item
+    // is parsed as an inline styled span rather than being misattributed to the <li>.
+    visit(tree, 'text', (node: Text, index, parent) => {
+      if (index === undefined || !parent) return;
+      if (!('children' in parent)) return;
+
+      const text = node.value;
+      if (!text.includes(']{')) return;
+
+      INLINE_ATTR_REGEX.lastIndex = 0;
+      const parts: ElementContent[] = [];
+      let lastIndex = 0;
+      for (let match = INLINE_ATTR_REGEX.exec(text); match !== null; match = INLINE_ATTR_REGEX.exec(text)) {
+        // Text before match
+        if (match.index > lastIndex) {
+          parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
+        }
+
+        const content = match[1];
+        const attrStr = match[2];
+        const attrs = parseAttrs(attrStr);
+
+        const span: Element = {
+          type: 'element',
+          tagName: 'span',
+          properties: {},
+          children: [{ type: 'text', value: content }],
+        };
+        applyAttrs(span, attrs);
+        parts.push(span);
+
+        lastIndex = match.index + match[0].length;
+      }
+
+      if (parts.length === 0) return;
+
+      // Remaining text
+      if (lastIndex < text.length) {
+        parts.push({ type: 'text', value: text.slice(lastIndex) });
+      }
+
+      // Replace original text node — skip past newly inserted parts
+      (parent as Element).children.splice(index, 1, ...parts);
+      return index + parts.length;
+    });
+
+    // Pass 3: Handle list item trailing {.class} AND trailing {.class} after element siblings
     // Combined into a single visit to avoid duplicate AST traversals.
     const TRAILING_ATTR_REGEX = /^\{([^}]+)\}/;
 
     visit(tree, 'element', (node: Element) => {
       // --- Part A: List item trailing {.class} ---
-      // Scans all children of <li> for trailing {.class} patterns — handles:
+      // Scans children of <li> for trailing {.class} patterns — handles:
       //   - Direct text child (simple li)
       //   - Text inside <p> child (loose list / nested list case)
       //   - Non-last text children (li with sub-list where text precedes <ul>)
@@ -97,14 +144,14 @@ export function rehypeShokaAttrs() {
 
           if (child.type === 'text') {
             textNode = child;
-          } else if (child.type === 'element' && child.children.length > 0) {
+          } else if (child.type === 'element' && child.tagName === 'p' && child.children.length > 0) {
             const last = child.children[child.children.length - 1];
             if (last?.type === 'text') textNode = last as Text;
           }
 
           if (!textNode) continue;
 
-          const match = textNode.value.match(/\{([^}]+)\}\s*$/);
+          const match = textNode.value.match(/(?<!\])\{([^}]+)\}\s*$/);
           if (match) {
             const attrs = parseAttrs(match[1]);
             textNode.value = textNode.value.slice(0, match.index).trimEnd();
@@ -150,51 +197,6 @@ export function rehypeShokaAttrs() {
           children.splice(i, 1);
         }
       }
-    });
-
-    // Pass 3: Handle inline [text]{.class} in text nodes
-    visit(tree, 'text', (node: Text, index, parent) => {
-      if (index === undefined || !parent) return;
-      if (!('children' in parent)) return;
-
-      const text = node.value;
-      if (!text.includes(']{')) return;
-
-      INLINE_ATTR_REGEX.lastIndex = 0;
-      const parts: ElementContent[] = [];
-      let lastIndex = 0;
-      for (let match = INLINE_ATTR_REGEX.exec(text); match !== null; match = INLINE_ATTR_REGEX.exec(text)) {
-        // Text before match
-        if (match.index > lastIndex) {
-          parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
-        }
-
-        const content = match[1];
-        const attrStr = match[2];
-        const attrs = parseAttrs(attrStr);
-
-        const span: Element = {
-          type: 'element',
-          tagName: 'span',
-          properties: {},
-          children: [{ type: 'text', value: content }],
-        };
-        applyAttrs(span, attrs);
-        parts.push(span);
-
-        lastIndex = match.index + match[0].length;
-      }
-
-      if (parts.length === 0) return;
-
-      // Remaining text
-      if (lastIndex < text.length) {
-        parts.push({ type: 'text', value: text.slice(lastIndex) });
-      }
-
-      // Replace original text node — skip past newly inserted parts
-      (parent as Element).children.splice(index, 1, ...parts);
-      return index + parts.length;
     });
   };
 }

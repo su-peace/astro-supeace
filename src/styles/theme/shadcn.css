@@ -2,7 +2,7 @@
 @layer base {
   :root {
     /* Azure & Lily (晴空与白百合) Light: 苍穹晴蓝、晨霭淡蓝基底与深绀高对比主文字 */
-    --background: 213.3 69.2% 97.5%;
+    --background: 212 55% 94%;
     --foreground: 233 75.8% 17.8%;
 
     --card: 0 0% 100%;
@@ -14,20 +14,20 @@
     --primary: 214.7 51.9% 54.3%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 213.8 61.5% 94.9%;
+    --secondary: 213 52% 90.5%;
     --secondary-foreground: 231.7 45.3% 25.1%;
 
-    --muted: 213.8 61.5% 94.9%;
+    --muted: 213 52% 90.5%;
     --muted-foreground: 228 25.0% 55.0%;
 
-    --accent: 211.1 77.1% 93.1%;
+    --accent: 211 65% 88%;
     --accent-foreground: 231.7 45.3% 25.1%;
 
     --destructive: 0 72% 56%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 62.5% 90.6%;
-    --input: 214 62.5% 90.6%;
+    --border: 214 45% 86%;
+    --input: 214 45% 86%;
     --ring: 215 68.2% 65.5%;
 
     --badge-primary: 214.7 51.9% 54.3%;

@@ -278,6 +278,7 @@ export default defineConfig({
     environments: {
       client: {
         build: {
+          chunkSizeWarningLimit: 600,
           rolldownOptions: {
             output: {
               codeSplitting: {
@@ -300,6 +301,7 @@ export default defineConfig({
     },
     worker: { format: 'es' },
     build: {
+      chunkSizeWarningLimit: 600,
       // Inline small style sheets without changing caching for images or larger assets.
       assetsInlineLimit: (filePath, content) => (filePath.endsWith('.css') ? content.length < 8192 : undefined),
       // Enable sourcemap for Sonda bundle analysis
