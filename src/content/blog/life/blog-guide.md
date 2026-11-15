@@ -10,10 +10,9 @@ tags:
   - 写作规范
   - 指南
 description: 本文汇总了当前博客的所有写作格式与扩展功能，包含 Frontmatter 头部配置、人工与 AI 摘要、Shoka 样式特效、代码高亮增强、交互组件与加密语法，可作为日常写博客的速查手册。
-catalog: true
 tocNumbering: false
-math: true
 quiz: true
+password: contenyio
 ---
 
 欢迎查阅博客写作指南！本文档汇总了本博客（基于 Astro + Shoka 风格增强）支持的所有写作语法、页面属性配置和排版扩展，可以直接作为模板参考。
